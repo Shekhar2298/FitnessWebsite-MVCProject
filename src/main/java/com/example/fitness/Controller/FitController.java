@@ -79,6 +79,7 @@ public class FitController {
 
         return "forgotpwd";
     }
+    
     @GetMapping("/forgotpswd")
     public String Forgotpswd() {
       
