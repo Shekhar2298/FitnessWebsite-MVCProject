@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title>Registration Form</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    .th{
+        font-size: 40px;
+        color: rgba(180, 226, 43, 0.962);
+   text-align: center;
+        margin-top: 60px;
+        text-shadow: 5px;
+      
+        
+        
+    }
+    /* #namestar:after{
+        content: "*";
+        color: red;
+    } */
+    </style>
+  </head>
+  <body class="bg-secondary">
+
+    <div class="container mt-3">
+      <h1 class="th"> Form for Data Update</h1>
+      <form class="row g-3 container" method="post" name="form1"
+        th:action="@{/update}" action="#" target="_blank" th:object="${updatedata}" onsubmit="return valid()">
+        <div class="mb-3 mt-3">
+          <label for="NameInput" id="namestar" class="form-label">Name:</label>
+          <input type="text" class="form-control" id="NameInput" name="Name"
+            placeholder="Enter your name" th:value="${updatedata.Name}"  required>
+          <div id="validationServerUsernameFeedback" class="invalid-feedback">
+            Enter your name.
+          </div>
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="inputEmail4" class="form-label" id="namestar">Email ID:</label>
+          <input type="text" class="form-control" id="inputEmail4"
+            placeholder="Enter Email-ID" name="Emailid" th:value="${updatedata.Emailid}">
+          <div id="validationServerUsernameFeedback"
+            pattern="[^@\s]+@[^@\s]+\.[^@\s]+" class="invalid-feedback">
+            Please enter your email id.
+          </div>
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="inputmobile" class="form-label" id="namestar">Mobile
+            Number:</label>
+          <input type="text" pattern="[789][0-9]{9}" title="Enter valid number"
+            class="form-control" id="inputmobile"
+            placeholder="Enter Mobile Number" name="contactmobi" th:value="${updatedata.contactmobi}" required>
+          <div id="validationServerUsernameFeedback" class="invalid-feedback">
+            Please your mobile number.
+          </div>
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="country" class="form-label" id="namestar">Country:</label>
+          <input id="city" class="autocomplete form-control "
+          placeholder="Enter your city" name="country" th:value="${updatedata.country}" required>
+          <!-- <select onchange="print_state('states',this.selectedIndex);" name=" "
+            id="country" class="form-control" required>
+
+            <option value=" ">--Select country--</option>
+          </select> -->
+          <div id="validationServerUsernameFeedback" class="invalid-feedback">
+            Please select country.
+          </div>
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="state" class="form-label" id="namestar">State:</label>
+          <input id="city" class="autocomplete form-control "
+          placeholder="Enter your city" name="state" th:value="${updatedata.state}" required>
+          <!-- <select onchange="print_cities('cities',this.selectedIndex);"
+              name=" " id="states" class="form-control" required>
+
+              <option value=" ">--Select state--</option>
+
+            </select> -->
+            <div id="validationServerUsernameFeedback" class="invalid-feedback">
+              Please select state.
+            </div>
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="city" class="form-label" id="namestar">City:</label>
+            <input id="city" class="autocomplete form-control "
+              placeholder="Enter your city" name="city" th:value="${updatedata.city}" required>
+            <div id="validationServerUsernameFeedback" class="invalid-feedback">
+              Please enter your city.
+            </div>
+
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="inputAddress" class="form-label" id="namestar">Address:</label>
+            <input type="text" class="form-control" id="inputAddress"
+              placeholder="1234 Main Street" name="address" th:value="${updatedata.address}" required>
+            <div id="validationServerUsernameFeedback" class="invalid-feedback">
+              Please enter address.
+            </div>
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="inputZip" class="form-label" id="namestar">Zip Code:</label>
+            <input type="text" class="form-control" id="inputZip"
+              placeholder="Enter Zip Code" name="zipy" th:value="${updatedata.zipy}" required>
+            <div id="validationServerUsernameFeedback" class="invalid-feedback">
+              Please enter valid zip-code.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="psw" class="form-label" id="namestar">Password:</label>
+            <input type="password" class="form-control" id="inputpsw"
+              placeholder="Enter password" name="psw" th:value="${updatedata.psw}"
+              pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{6,}$"
+              required>
+            <div id="validationServerUsernameFeedback" class="invalid-feedback">
+              Please enter Password.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="cfpsw" class="form-label" id="namestar">Confirm
+              Password:</label>
+            <input type="password" class="form-control" id="inputpsw"
+              placeholder="Enter password" name="cfpsw" th:value="${updatedata.cfpsw}"
+              pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{6,}$"
+              required>
+            <div id="validationServerUsernameFeedback" class="invalid-feedback">
+              Please enter password.
+            </div>
+          </div>
+          <!-- <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="myCheck"
+              name="remember" required>
+            <label class="form-check-label" for="myCheck">Agree to our <a
+                href="#">Terms & Privacy</a>.</label>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Check this checkbox to continue.</div>
+          </div> -->
+          <input type="submit"  class="btn btn-success" value="Update">
+        </form>
+      </div>
+
+      <!-- <script type="text/javascript" src="../static/js/countrystate.js"
+        th:src="@{js/countrystate.js}"></script>
+      <script type="text/javascript" language="javascript">
+    print_country("country");
+</script>
+      <script type="text/javascript" language="javascript">
+    print_cuntry("states");
+</script> -->
+      <script type="text/javascript" src="../static/js/join-now-page.js"
+        th:src="@{js/join-now-page.js}"></script>
+
+      <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+      <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+        crossorigin="anonymous">
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    </body>
+  </html>

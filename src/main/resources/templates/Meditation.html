@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark" xmlns:th="www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Meditation</title>
+
+        <link rel="stylesheet" href="../static/CSS/style.css"
+            th:href="@{/css/style.css}">
+        <style>
+        /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #3e3d3d;
+  margin: 5px auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  /* Position it in the top right corner outside of the modal */
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+/* Close button on hover */
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+.medimg {
+            background-image: url(https://img.freepik.com/premium-photo/man-sits-lotus-pose-person-practices-yoga-meditation-radiating-energy-generative-ai_788189-3992.jpg);
+            width: 100%;
+            min-height:600px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            opacity: 1;
+
+            background-size: 120% 120%;
+            animation: gradient 15s ease infinite;
+        }
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+        
+.topnav {
+  background-color:lightyellow;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+/* Dropdown container - needed to position the dropdown content */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Style the dropdown button to fit inside the topnav */
+.dropdown .dropbtn {
+  font-size: 17px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a dark background on topnav links and the dropdown button on hover */
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #555;
+  color: white;
+}
+
+/* Add a grey background to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Show the dropdown menu when the user moves the mouse over the dropdown button */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+}
+       
+        
+    </style>
+    </head>
+
+    <body>
+
+        <header>
+            <div class="topnav" id="myTopnav">
+                <div class="container-fluid">
+                    <a class="navbar-brand">
+                        <img class="img1"
+                            src="../static/images/Fitness-logo.avif"
+                            th:src="@{images/Fitness-logo.avif}"
+                            alt="Bootstrap">
+                    </a>
+
+                    <h1 class="text-success bs-success-border-subtle"
+                        style="position: absolute; margin-left: 100px;padding-top: 10px;">
+                        FIT
+                        FACTORY
+                    </h1>
+
+                </div>
+                <div style="float: right; padding-top: 6px;">
+                    <!-- <div class="dropdown ">
+                        <button class="dropbtn ">Home
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a th:href="@{/diet}"
+                                target="_blank" > Diet</a>
+                            <a th:href="@{/yoga}" target="_blank">
+                                Yoga</a>
+                            <a th:href="@{/meditation}"
+                                target="_blank">Meditation</a>
+                        </div>
+                    </div> -->
+                    <a th:href="@{/home}" class="divcolor"
+                        style="color: brown; font-size: 25px;">Home</a>
+
+                    <a th:href="@{/about}" class="divcolor"
+                        style="color: brown; font-size: 25px;">Contact</a>
+
+                    <a th:href="@{/about}" class="divcolor"
+                        style="color: brown; font-size: 25px;">About</a>
+                    <a href="javascript:void(0);" class="icon"
+                        onclick="myFunction()">&#9776;</a>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-outline-success btn-sm me-md-2 ">
+                            <a th:href="@{/join}"
+                                class="list-group-item list-group-item-action active"
+                                target="_blank">
+                                SIGNUP
+                            </a>
+                        </button>
+                        <button
+                            onclick="document.getElementById('id01').style.display='block'"
+                            class="btn btn-outline-danger"
+                            style="width:auto;">Login</button>
+
+                        <div id="id01" class="modal">
+
+                            <!-- th:action="@{login-dt}" -->
+
+                            <form class="modal-content animate"
+                                th:action="@{/login}" action="#"
+                                method="post"
+                                name="myform"
+                                onsubmit="return validateform()">
+                                <div class="imgcontainer">
+                                    <span
+                                        onclick="document.getElementById('id01').style.display='none'"
+                                        class="close"
+                                        title="Close Modal">&times;</span>
+                                    <img src="../static/images/img2_avatar.jfif"
+                                        th:src="@{images/img2_avatar.jfif}"
+                                        alt="Avatar" class="avatar" id="avt">
+                                </div>
+
+                                <div class="container vlid">
+                                    <label for="Emailid"><b>Username/Email</b><span
+                                            class="req">*</span></label>
+                                    <input type="text"
+                                        placeholder="Enter Username"
+                                        name="Emailid" id="Emailid" required>
+                                    <!-- th:field="*{Emailid}" -->
+
+                                    <label for="psw"><b>Password</b><span
+                                            class="req">*</span></label>
+                                    <input type="password"
+                                        placeholder="Enter Password"
+                                        name="psw" id="psw"
+                                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                        required>
+                                    <span>
+                                        <input type="checkbox"
+                                            onclick="verify()">Show
+                                        password
+                                    </span>
+                                    <br>
+                                    <label>
+                                        <input type="checkbox" checked="checked"
+                                            name="remember"> Remember me
+                                    </label>
+                                    <br>
+                                    <input class="btn btn-success" type="submit"
+                                        value="Login">
+
+                                </div>
+
+                                <div class="container">
+                                    <button type="button"
+                                        style="max-width: 100px; height: auto;"
+                                        onclick="document.getElementById('id01').style.display='none'"
+                                        class="cancelbtn">Cancel</button>
+                                    <a class="btn btn-warning" role="button"
+                                        th:href="@{/join}"
+                                        onclick="create()"
+                                        style="max-width:110px;"
+                                        value="signUp">Sign up</a>
+                                    <span class="psw"> <a href="#">Forgotpassword</a></span>
+                                </div>
+                                <div id="pswvalid" class="container">
+                                    <h5>Password must contain the following:</h5>
+                                    <p id="letter" class="invalid">&#x2713; A <b>lowercase</b>
+                                        letter</p>
+                                    <p id="capital" class="invalid">&#x2713; A
+                                        <b>capital
+                                            (uppercase)</b> letter</p>
+                                    <p id="number" class="invalid">&#x2713; A <b>number</b></p>
+                                    <p id="length" class="invalid">&#x2713;
+                                        Minimum
+                                        <b>8
+                                            characters</b></p>
+
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <div class="medimg">
+          
+        </div>
+
+        <div class="container">
+            <h2 style="color: lightblue;">History of Meditation</h2>
+            <p>While meditation has recently grown in popularity in the U.S.,
+                the practice actually dates back thousands of
+                years. The practice has been associated with religious
+                traditions, particularly Buddhism. Meditation was
+                used throughout Asia but finally began to make its way to other
+                parts of the world during the 20th century.
+                It rose to prominence in the West during the 1960s and 1970s and
+                was often associated with hippie culture.
+
+                In addition to its association with Buddhism, meditation is also
+                practiced in Christianity, Islam, Hinduism,
+                and Taoism. However, it is important to note that a person does
+                not need to be religious to meditate. Guided
+                meditation and transcendental meditation are two examples of
+                non-religious forms of meditation. Yoga can
+                also be a non-religious form of physical meditation.</p>
+
+            <h2 style="color: lightcoral;">What is meditation?</h2>
+            <p>Meditation is the practice of intentionally spending time with
+                our mind. We take time out of our busy days to
+                sit, breathe, and try to remain focused on our breath. Doing
+                this helps us become more aware of our
+                thoughts,
+                act more compassionately toward ourselves and others, and
+                connect with the present moment.</p>
+
+            <h2 style="color: lightcyan;">What does meditation do?</h2>
+            <p>Life is sometimes difficult, stressful, and challenging. We can't
+                control what happens, but we do have the
+                potential to change the way we relate to those things. We need
+                awareness to understand our own mind (our
+                thoughts, feelings, and behaviors). And we need compassion to
+                connect with ourselves and others.</p>
+            <p>Meditation creates the conditions for us to see things more
+                clearly, feel calmer and content, and be kind to
+                ourselves and others no matter what's happening in our lives.
+                But that doesn't mean we'll feel clear, calm,
+                and kind as soon as we start or finish. Since the mind is always
+                changing, our experience might feel
+                different each time we meditate.</p>
+
+            <h2 style="color: lightgoldenrodyellow;">Start meditating?</h2>
+            <ul class="list1">
+                <li><b>What matters most is consistency.</b>
+                    Ideally, we meditate a few times a week or daily. But even
+                    completing one meditation can lead to a
+                    reduction in mind wandering. We'll feel more and more
+                    benefits the more we practice. Research shows that
+                    30 days of Headspace reduces stress by a third and improves
+                    satisfaction with life.</li>
+
+                <li><b>The best time to meditate is whenever we can.</b>It doesn't
+                    matter when (or where) we meditate, so
+                    choose whatever time works best. Meditation could be nice to
+                    do first thing in the morning before our
+                    day begins or at night in bed. We could always meditate to
+                    reset ourselves before our last work meeting
+                    or after we drop the kids off at school. Anytime we feel
+                    overwhelmed, we can take a break and meditate
+                    instead of pushing through.</li>
+                <li><b>We only need a few minutes to meditate.</b>A short
+                    meditation can be five minutes or less. If we feel
+                    like that's not enough, a 10-minute meditation is great for
+                    beginners. Once we have a consistent
+                    practice, we can slowly increase our time.</li>
+                <li><b>Be prepared for noisy distractions.</b>We don't need
+                    perfect quiet to meditate. Total silence might
+                    be too overwhelming in meditation for beginners. We become
+                    extra sensitive to every little sound when
+                    things are completely quiet.</li>
+
+            </ul>
+            <h2 style="color: lightgreen;">Types of Meditation</h2>
+            <p>Meditation can take on many different forms, but there are two
+                main types: concentrative meditation and
+                mindfulness meditation:</p>
+            <h3>Concentrative Meditation</h3>
+            <p>Concentrative meditation involves focusing on a specific thing
+                while tuning out everything else around you.
+                The goal is to experience whatever you are focusing on, whether
+                it's your breath, a specific word, or a
+                mantra, to reach a higher state of being</p>
+            <h3>Mindfulness Meditation</h3>
+            <li>Mindfulness meditation includes, among others, both
+                mindfulness-based stress reduction (MBSR) and
+                mindfulness-based cognitive therapy (MBCT). Mindfulness can
+                target different issues, such as depression,
+                meaning its focus may differ from practice to practice. Overall,
+                it involves the state of being aware of and
+                involved in the present moment and making yourself open, aware,
+                and accepting. </li>
+
+        </div>
+
+        <div class="container">
+            <h2 style="color: lightsalmon;">Benifits of Meditation</h2>
+            <p>Consciousness is often likened to a stream, shifting and changing
+                smoothly as it passes over the terrain.
+                Meditation is one deliberate means of changing the course of
+                this stream, and in turn, altering how you
+                perceive and respond to the world around you.
+
+                Research has shown that meditation can have both physiological
+                and psychological effects. Some positive
+                physiological effects include a lowered state of physical
+                arousal, reduced respiration rate, decreased heart
+                rate, changes in brain wave patterns, and lowered stress.</p>
+            <ol>
+                <li>Better management of symptoms related to anxiety disorders,
+                    depression, sleep disorders, pain issues,
+                    and high blood pressure</li>
+                <li>Better stress management skills</li>
+                <li>Changes in different aspects of attention and mindfulness</li>
+                <li>Increased self-awareness</li>
+                <li>Improved emotional well-being</li>
+                <li>Improved working memory and fluid intelligence</li>
+                <li>Improved immunity</li>
+
+            </ol>
+        </div>
+        <div class="container">
+            <h2 style="color: lightseagreen;">Tips for Meditating</h2>
+            <ul>
+                <li><b>Start slow.</b> Begin by doing short sessions of around 5
+                    to 10 minutes a day, and then work your way
+                    up
+                    progressively to longer sessions.</li>
+                <li><b>Set a schedule.</b>Try meditating at the same time each
+                    day—for a few minutes first thing in the
+                    morning, for example.</li>
+                <li><b>Get comfortable. </b>Sitting cross-legged on the floor is
+                    one option, but comfort is the key. You
+                    need to be in a position where you can sit for several
+                    minutes without getting uncomfortable, stiff, or
+                    restless.</li>
+                <li><b>Focus on what you're feeling.</b>Breathe naturally and
+                    notice the feelings and sensations you
+                    experience as you breathe in and out.</li>
+                <li><b>Don't try to suppress feelings. </b>Your mind is bound to
+                    wander as you meditate—and sometimes this
+                    can lead to thoughts and feelings that are uncomfortable or
+                    even distressing. The goal isn't to clear
+                    your mind of such thoughts. What you should think about
+                    instead is acknowledging these thoughts without
+                    judging them, and then gently guiding your focus back toward
+                    your breathing.</li>
+
+            </ul>
+        </div>
+
+        <div id="carouselExampleAutoplaying" class="carousel slide"
+            data-bs-ride="carousel"
+            style="display: block;margin-left: auto; margin-right: auto;width: 50%;">
+            <div class="carousel-inner">
+                <div class="carousel-item active"
+                    style="height:300px ;width: auto;">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOmgHJyAy3BO2dmey0IVosd99NNC-WUzRzgzZQ7xWvWQ&usqp=CAU&ec=48600112"
+                        class="d-block w-100" alt="...">
+
+                </div>
+                <div class="carousel-item" style="height:300px ;width: auto;">
+                    <img
+                        src="https://www.bodybuilding.com/images/2023/april/resistant-starches-for-gains-header-960x540.jpg"
+                        class="d-block w-100" alt="...">
+
+                </div>
+                <div class="carousel-item" style="height:300px ;width: auto;">
+                    <img
+                        src="https://pinedovefarm.com/wp-content/uploads/2017/09/bigstock-Yoga-outdoor-Happy-woman-doin-172357406.jpg"
+                        class="d-block w-100" alt="...">
+
+                </div>
+                <div class="carousel-item" style="height:300px ;width: auto;">
+                    <img
+                        src="https://img.freepik.com/premium-photo/man-sits-lotus-pose-person-practices-yoga-meditation-radiating-energy-generative-ai_788189-3992.jpg"
+                        class="d-block w-100" alt="...">
+
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button"
+                data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button"
+                data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <hr>
+
+        <div id="carouselExampleAutoplaying"
+            class="carousel slide container-fluid"
+            data-bs-ride="carousel"
+            style="display: block;margin-left: auto; margin-right: auto;max-width: 50%; height: 50%;">
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <img class="d-block w-100"
+                        src="https://images.hindustantimes.com/img/2022/02/21/550x309/meditation_2_1645444217570_1645444231020.jpg"
+                        alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+
+                        <div class="carousel-item">
+                            <img class="d-block w-100"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOmgHJyAy3BO2dmey0IVosd99NNC-WUzRzgzZQ7xWvWQ&usqp=CAU&ec=48600112"
+                                alt="Second slide">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100"
+                                    src="https://pinedovefarm.com/wp-content/uploads/2017/09/bigstock-Yoga-outdoor-Happy-woman-doin-172357406.jpg"
+                                    alt="Third slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100"
+                                        src="https://img.freepik.com/premium-photo/man-sits-lotus-pose-person-practices-yoga-meditation-radiating-energy-generative-ai_788189-3992.jpg"
+                                        alt="fourth slide">
+                                    <div
+                                        class="carousel-caption d-none d-md-block">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100"
+                                            src="https://images.hindustantimes.com/img/2022/11/09/1600x900/full-shot-kid-meditating-grass_1668001775077_1668001784319_1668001784319.jpg"
+                                            alt="fifth slide">
+                                        <div
+                                            class="carousel-caption d-none d-md-block">
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev"
+                                        type="button"
+                                        data-bs-target="#carouselExampleAutoplaying"
+                                        data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon"
+                                            aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next"
+                                        type="button"
+                                        data-bs-target="#carouselExampleAutoplaying"
+                                        data-bs-slide="next">
+                                        <span class="carousel-control-next-icon"
+                                            aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class=" foot1">
+            <div class="container-fluid " style="position: relative;">
+                <br>
+                <aside class="foot3">
+                    <h3>Find us on</h3><br>
+                    <ul class="nav flex-row">
+                        <i class="fa fa-facebook fa-lg"></i>
+                        <i class="fa fa-youtube  fa-lg"></i>
+                        <i class="fa fa-instagram  fa-lg"></i>
+                        <i class="fa fa-twitter  fa-lg"></i>
+                    </ul>
+                </aside>
+
+                <aside class=" foot2">
+                    <h3>Quick Links</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                                th:href="@{/diet}" target="_blank">Diet</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/yoga}"
+                                target="_blank">Yoga</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/meditation}"
+                                target="_blank">Meditation</a>
+                        </li>
+
+                    </ul>
+                </aside>
+            </aside>
+        </div>
+
+        <aside class=" foot4">
+            <h3 style="color: blueviolet;">About Us</h3>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"
+                    th:href="@{/about}">Programs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">Organizational
+                        structure</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">Our centers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">Contact Us</a>
+                </li>
+
+            </ul>
+            <br><br>
+
+        </footer>
+
+        <div class="container-fluid text-secondary ">
+
+            <a>&#169 All Copyrights Reserved</a>
+            <div style="float: right;">
+                <ul class="nav nav-pills nav-fill" style="float: right;">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="#">Privacy
+                            policy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cookie Policy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Terms of Use</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        
+               <script>
+        //login Form validation
+function validateform(){  
+    var name=document.myform.uname.value;  
+    var password=document.myform.psw.value;  
+      
+    if (name==null || name==""){  
+      alert("Enter username");  
+      return false;  
+    }else if(password.length<8){  
+      alert("Password must be at least 8 characters long.");  
+      password.focus();
+      return false;  
+      }  
+    }  
+
+    //password validation
+    var myinput=document.getElementById("psw")
+    var letter=document.getElementById("letter")
+    var capital=document.getElementById("capital")
+    var number=document.getElementById("number")
+    var length=document.getElementById("length")
+
+    // When the user clicks on the password field, show the message box
+    myinput.onfocus=function(){
+      document.getElementById("pswvalid").style.display="block";
+    }
+    // When the user clicks outside of the password field, hide the message box
+    myinput.onblur=function(){
+      document.getElementById("pswvalid").style.display="none";
+    }
+
+    // When the user starts to type something inside the password field
+//validate capital letters
+myinput.onkeyup=function(){
+  var lowerCaseLetters= /[a-z]/g;
+
+if(myinput.value.match(lowerCaseLetters)){
+  letter.classList.remove('invalid');
+  letter.classList.add('valid');
+}else{
+  letter.classList.remove('valid');
+  letter.classList.add('invalid')
+}
+var upperCaseLetters= /[A-Z]/g;
+
+if(myinput.value.match(upperCaseLetters)){
+  capital.classList.remove('invalid');
+  capital.classList.add('valid');
+}else{
+  capital.classList.remove('valid');
+  capital.classList.add('invalid')
+}
+//validate number
+var numbers= /[0-9]/g;
+if(myinput.value.match(numbers)){
+  number.classList.remove('invalid')
+  number.classList.add('valid')
+}else{
+  number.classList.remove('valid')
+  number.classList.add('invalid')
+}
+// validate length
+if(myinput.value.length>=8){
+  length.classList.remove('invalid')
+  length.classList.add('valid')
+}else{
+  length.classList.remove('valid')
+  length.classList.add('invalid')
+}
+var numbers= /[0-9]/g;
+if(myinput.value.match(numbers)){
+  number.classList.remove('invalid')
+  number.classList.add('valid')
+}else{
+  number.classList.remove('valid')
+  number.classList.add('invalid')
+}
+}
+
+//Show Password
+var x=document.getElementById("psw")
+function verify(){
+    if(x.type==='password'){
+        x.type='text'
+    }
+    else{
+        x.type='password';
+    }
+}
+
+//After clicking login button
+// function validateform(){
+//   alert("Login successfully")
+// }
+
+
+
+
+
+    </script>
+        </script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"></script>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+            crossorigin="anonymous">
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="D:\web design\Libraries\bootstrap.js"></script>
+        <script
+            src="D:\web design\Libraries\bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css"
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+        <script src="D:\web design\Libraries\bootstrap.css"></script>
+
+    </body>
+
+</html>

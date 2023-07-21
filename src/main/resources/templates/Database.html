@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title>User Database</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+  td {
+font-size: 14px;
+text-align: center;
+}
+.table{
+        size: 100%;
+      }
+       th{
+text-align: center;
+font-size:16px;
+      }
+
+</style>
+
+  </head>
+  <body>
+
+    <div class="container ">
+      <h2 class="text-center">Data Table</h2>
+      <table class="table">
+        <thead>
+          <tr class="table-info">
+            <th scope="col">Fullname</th>
+
+            <th scope="col">Email</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Country</th>
+            <th scope="col">State</th>
+            <th scope="col">City</th>
+            <th scope="col">Address</th>
+            <th scope="col">Zip Code</th>
+            <th scope="col">Password</th>
+
+            <th scope="col">Activity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="secondary" th:each="d: ${data}" >
+            <td th:text="${d.Name}" class=" table-danger"></td>
+            <td th:text="${d.Emailid}" class=" table-warning"> </td>
+            <td th:text="${d.contactmobi}" class=" table-success"> </td>
+            <td th:text="${d.country}" class=" table-success"></td>
+            <td th:text="${d.state}" class=" table-secondary"></td>
+            <td th:text="${d.city}" class=" table-info"></td>
+            <td th:text="${d.Address}" class=" table-light"></td>
+            <td th:text="${d.zipy}" class=" table-white"></td>
+            <td th:text="${d.psw}" class=" table-primary" id="pswdata" ></td>
+            
+
+            <td class="table-dark">
+              <a name id role="button"
+                class="btn btn-success btn-lg" href="#"
+                th:href="@{/update/{id}(id=${d.Emailid})}">Edit</a>
+
+              <a name id class="btn  btn-danger btn-lg"
+                th:href="@{/deletedata/{id}(id=${d.Emailid})}" role="button"
+                href="#">Delete</a>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      var x=document.getElementById("pswdata")
+function Encryption(){
+  if(x.type==='password'){
+       return x.type='text'
+    }
+}
+
+    
+
+    </script>
+  </body>
+</html>

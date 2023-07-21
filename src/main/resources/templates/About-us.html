@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark" xmlns:th="www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>About Us</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+            crossorigin="anonymous">
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/CSS/style.css">
+        <link rel="stylesheet" type="text/css"
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+        <style>
+            /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #464545;
+  margin: 5px auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  /* Position it in the top right corner outside of the modal */
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+/* Close button on hover */
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+/* Topnav */
+.topnav {
+  background-color: lightyellow;
+  overflow: hidden;
+  
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+/* Dropdown container - needed to position the dropdown content */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Style the dropdown button to fit inside the topnav */
+.dropdown .dropbtn {
+  font-size: 17px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a dark background on topnav links and the dropdown button on hover */
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #555;
+  color: white;
+}
+
+/* Add a grey background to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Show the dropdown menu when the user moves the mouse over the dropdown button */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+  
+}
+
+        </style>
+    </head>
+
+    <body class="bg-dark">
+
+        <header>
+            <div class="topnav" id="myTopnav">
+                <div class="container-fluid">
+                    <a class="navbar-brand">
+                        <img class="img1"
+                            src="../static/images/Fitness-logo.avif"
+                            th:src="@{images/Fitness-logo.avif}"
+                            alt="Bootstrap">
+                    </a>
+
+                    <h1 class="text-success bs-success-border-subtle"
+                        style="position: absolute; margin-left: 100px;padding-top: 10px;">
+                        FIT
+                        FACTORY
+                    </h1>
+
+                </div>
+                <div style="float: right; padding-top: 6px;"   >
+                 
+                    <a th:href="@{/home}" class="divcolor" style="color: brown; font-size: 25px;">Home</a>
+
+                    <a th:href="@{/about}" class="divcolor" style="color: brown; font-size: 25px;">Contact</a>
+
+                    
+                    <a href="javascript:void(0);" class="icon"
+                        onclick="myFunction()">&#9776;</a>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-outline-success btn-sm me-md-2 "
+                           >
+                            <a th:href="@{/join}"
+                                class="list-group-item list-group-item-action active"
+                                target="_blank">
+                                SIGNUP
+                            </a>
+                        </button>
+                        <button
+                            onclick="document.getElementById('id01').style.display='block'"
+                            class="btn btn-outline-danger"
+                            style="width:auto;">Login</button>
+
+                        <div id="id01" class="modal">
+
+
+                            <!-- th:action="@{login-dt}" -->
+
+                            <form class="modal-content animate"
+                                th:action="@{/login}" action="#"
+                                method="post"
+                                name="myform"
+                                onsubmit="return validateform()">
+                                <div class="imgcontainer">
+                                    <span
+                                        onclick="document.getElementById('id01').style.display='none'"
+                                        class="close"
+                                        title="Close Modal">&times;</span>
+                                    <img src="../static/images/img2_avatar.jfif"
+                                        th:src="@{images/img2_avatar.jfif}"
+                                        alt="Avatar" class="avatar" id="avt">
+                                </div>
+
+                                <div class="container vlid">
+                                    <label for="Emailid"><b>Username/Email</b><span
+                                            class="req">*</span></label>
+                                    <input type="text"
+                                        placeholder="Enter Username"
+                                        name="Emailid" id="Emailid" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Please enter valid Email" required>
+                                    <!-- th:field="*{Emailid}" -->
+
+                                    <label for="psw"><b>Password</b><span
+                                            class="req">*</span></label>
+                                    <input type="password"
+                                        placeholder="Enter Password"
+                                        name="psw" id="psw"
+                                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password should have minimmum 8 Characters "
+                                        required>
+                                    <span>
+                                        <input type="checkbox"
+                                            onclick=" return verify()">Show
+                                        password
+                                    </span>
+                                    <br>
+                                    <label>
+                                        <input type="checkbox" checked="checked"
+                                            name="remember"> Remember me
+                                    </label>
+                                    <br>
+                                    <input class="btn btn-success" type="submit"
+                                        value="Login">
+
+                                </div>
+
+                                <div class="container">
+                                    <button type="button"
+                                        style="max-width: 100px; height: auto;"
+                                        onclick="document.getElementById('id01').style.display='none'"
+                                        class="cancelbtn">Cancel</button>
+                                    <a class="btn btn-warning" role="button"
+                                        th:href="@{/join}"
+                                       
+                                        style="max-width:100px;"
+                                        value="signUp">Sign up</a>
+                                    <span class="psw"> <a th:href="@{/forgotpassword}">Forgotpassword</a></span>
+                                </div>
+                                <div id="pswvalid" class="container">
+                                    <h5>Password must contain the following:</h5>
+                                    <p id="letter" class="invalid">&#x2713; A <b>lowercase</b>
+                                        letter</p>
+                                    <p id="capital" class="invalid">&#x2713; A
+                                        <b>capital
+                                            (uppercase)</b> letter</p>
+                                    <p id="number" class="invalid">&#x2713; A <b>number</b></p>
+                                    <p id="length" class="invalid">&#x2713;
+                                        Minimum
+                                        <b>8
+                                            characters</b></p>
+
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            </header>
+
+            <div class="container">
+                <div class="jumbotron text-center">
+                    <h1 class="display-4 " style="color: antiquewhite;"><b>About Us</b></h1>
+                    <br>
+                    <h2 style="color: lightsalmon;">We serve society by strengthening
+                        the individual</h2>
+
+                </div>
+                <hr>
+                <div class="container">
+                    <h2 class="text-center" style="color: aquamarine;" id="structure">Organizational
+                        structure</h2>
+                    <p style="width: 100%;">In the Fit factory's organizational
+                        structure, there is a board of trustees with a
+                        term of two years. Two-thirds of the trustees change every
+                        two years. All the Fit Factory teachers and
+                        the previous trustees are allowed to nominate a new board.</p>
+    
+                    <p>There is a provision for an advisory board that monitors and
+                        guides the organization. All the accounts are
+                        regularly audited by an external auditor. Other than
+                        expenses, no trustee is entitled to benefits in terms
+                        of salary or benefits. The FitFactory directly help to fund
+                        its humanitarian projects. The proceeds
+                        from the sales of The Fit Factory Publications and Ayurveda
+                        products are also directed to the social
+                        initiatives.
+    
+                    </p>
+                </div>
+                <br>
+                <div class="container-fluid">
+
+                    <img
+                    src="https://images.pexels.com/photos/4325476/pexels-photo-4325476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    class="rounded mx-auto d-block">
+                <br>
+                    <article>
+                        <h3 id="program" style="color: lightcoral;">Programs</h3><br>
+                        <p>The Fit Factory offers numerous, highly effective
+                            educational and self-development
+                            programs and tools that facilitate the elimination
+                            of stress. These tools also foster deep and
+                            profound
+                            inner peace, happiness, and well-being for all
+                            individuals.
+
+                            These programs, which include breathing techniques,
+                            meditation, yoga, and practical wisdom for daily
+                            living,
+                            have helped millions around the world to completely
+                            transform their lives.</p>
+                    </article>
+                    <br>
+                   
+                    
+                </div>
+            </div>
+            <hr>
+           
+            <br>
+            <div class="container text-center">
+                <h2 style="color: lightgreen;" id="center"><u>Our centers</u></h2><br>
+                <section>
+                    <span class="border ">Mumbai</span>
+                    <span class="border ">Pune</span>
+                    <span class="border ">Delhi </span>
+                    <span class="border">Banglore</span>
+                </section>
+            </div>
+
+            <br><hr><br>
+            <div class="container">
+                <h2 class="text-center " style="color: lightyellow;"><u><a href="" id="CONTACT">Contact
+                            us</a></u></h2>
+                <main class="address">
+                    India office<br>
+                    Phone: +91 xxxxxxxxxx <br>
+                    Fax :+91 xx xxxx xxxx <br>
+                    Email: HealthSolution@Fitness.org <br>
+                    Address: Office of Fit Factory,Near kalyan station,<br>
+                    kalyan East, Mumbai, Maharashtra - 421201, India
+                </h5>
+
+                <img class="img2" src="../static/images/Map.png" th:src="@{images/Map.png}">
+            </div>
+        </main>
+        <br><br>
+        <footer class=" foot1">
+            <div class="container-fluid " style="position: relative;">
+                <br>
+                <aside class="foot3">
+                    <h3>Find us on</h3><br>
+                    <ul class="nav flex-row">
+                        <i class="fa fa-facebook fa-lg"></i>
+                        <i class="fa fa-youtube  fa-lg"></i>
+                        <i class="fa fa-instagram  fa-lg"></i>
+                        <i class="fa fa-twitter  fa-lg"></i>
+                    </ul>
+                </aside>
+
+                <aside class=" foot2">
+                    <h3>Quick Links</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                            th:href="@{/diet}">Diet Plan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/yoga}">Yoga</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/meditation}">Meditation</a>
+                        </li>
+
+                    </ul>
+                </aside>
+            </aside>
+        </div>
+
+        <aside class=" foot4">
+            <h3 style="color: blueviolet;">About Us</h3>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"
+                    th:href="@{/about}">Programs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">Organizational
+                        structure</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">Our centers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">Contact Us</a>
+                </li>
+
+            </ul>
+            <br><br>
+
+        </footer>
+
+        <div class="container-fluid text-secondary ">
+
+            <a>&#169 All Copyrights Reserved</a>
+            <div style="float: right;">
+                <ul class="nav nav-pills nav-fill" style="float: right;">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="#">Privacy
+                            policy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cookie Policy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Terms of Use</a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+
+       
+    <script>
+        //login Form validation
+function validateform(){  
+    var name=document.myform.uname.value;  
+    var password=document.myform.psw.value;  
+      
+    if (name==null || name==""){  
+      alert("Enter username");  
+      return false;  
+    }else if(password.length<8){  
+      alert("Password must be at least 8 characters long.");  
+      password.focus();
+      return false;  
+      }  
+    }  
+
+    //password validation
+    var myinput=document.getElementById("psw")
+    var letter=document.getElementById("letter")
+    var capital=document.getElementById("capital")
+    var number=document.getElementById("number")
+    var length=document.getElementById("length")
+
+    // When the user clicks on the password field, show the message box
+    myinput.onfocus=function(){
+      document.getElementById("pswvalid").style.display="block";
+    }
+    // When the user clicks outside of the password field, hide the message box
+    myinput.onblur=function(){
+      document.getElementById("pswvalid").style.display="none";
+    }
+
+    // When the user starts to type something inside the password field
+//validate capital letters
+myinput.onkeyup=function(){
+  var lowerCaseLetters= /[a-z]/g;
+
+if(myinput.value.match(lowerCaseLetters)){
+  letter.classList.remove('invalid');
+  letter.classList.add('valid');
+}else{
+  letter.classList.remove('valid');
+  letter.classList.add('invalid')
+}
+var upperCaseLetters= /[A-Z]/g;
+
+if(myinput.value.match(upperCaseLetters)){
+  capital.classList.remove('invalid');
+  capital.classList.add('valid');
+}else{
+  capital.classList.remove('valid');
+  capital.classList.add('invalid')
+}
+//validate number
+var numbers= /[0-9]/g;
+if(myinput.value.match(numbers)){
+  number.classList.remove('invalid')
+  number.classList.add('valid')
+}else{
+  number.classList.remove('valid')
+  number.classList.add('invalid')
+}
+// validate length
+if(myinput.value.length>=8){
+  length.classList.remove('invalid')
+  length.classList.add('valid')
+}else{
+  length.classList.remove('valid')
+  length.classList.add('invalid')
+}
+var numbers= /[0-9]/g;
+if(myinput.value.match(numbers)){
+  number.classList.remove('invalid')
+  number.classList.add('valid')
+}else{
+  number.classList.remove('valid')
+  number.classList.add('invalid')
+}
+}
+
+//Show Password
+var x=document.getElementById("psw")
+function verify(){
+    if(x.type==='password'){
+        x.type='text'
+    }
+    else{
+        x.type='password';
+    }
+}
+
+//After clicking login button
+// function validateform(){
+//   alert("Login successfully")
+// }
+
+
+
+
+
+    </script>
+
+    </body>
+
+</html>

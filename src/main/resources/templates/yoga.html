@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark" xmlns:th="www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Yoga Page</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+            crossorigin="anonymous">
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+       
+        <link rel="stylesheet" type="text/css"
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+        <script src="D:\web design\Libraries\bootstrap.css"></script>
+        <link rel="stylesheet" href="../static/CSS/style.css" th:href="@{/css/style.css}">
+        <style>
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #4d4b4b;
+            margin: 5px auto;
+            /* 15% from the top and centered */
+            border: 1px solid #888;
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button */
+        .close {
+            /* Position it in the top right corner outside of the modal */
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        /* Close button on hover */
+        .close:hover,
+        .close:focus {
+            color: red;
+            cursor: pointer;
+        }
+
+        /* Add Zoom Animation */
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        @keyframes animatezoom {
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+
+        .bckimg {
+            background-image: url(../images/logobckimg.jpg);
+            width: auto;
+            height: 550px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            opacity: 1;
+
+            background-size: 120% 120%;
+            animation: gradient 15s ease infinite;
+        }
+
+        body {
+            text-align: left;
+        }
+
+        .topnav {
+  background-color:lightyellow;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+/* Dropdown container - needed to position the dropdown content */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Style the dropdown button to fit inside the topnav */
+.dropdown .dropbtn {
+  font-size: 17px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a dark background on topnav links and the dropdown button on hover */
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #555;
+  color: white;
+}
+
+/* Add a grey background to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Show the dropdown menu when the user moves the mouse over the dropdown button */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+}
+
+
+    </style>
+    </head>
+
+    <body>
+
+        <header>
+            <div class="topnav" id="myTopnav">
+                <div class="container-fluid">
+                    <a class="navbar-brand">
+                        <img class="img1"
+                            src="../static/images/Fitness-logo.avif"
+                            th:src="@{images/Fitness-logo.avif}"
+                            alt="Bootstrap">
+                    </a>
+
+                    <h1 class="text-success bs-success-border-subtle"
+                        style="position: absolute; margin-left: 100px;padding-top: 10px;">
+                        FIT
+                        FACTORY
+                    </h1>
+
+                </div>
+                <div style="float: right; padding-top: 6px;">
+                    <!-- <div class="dropdown ">
+                        <button class="dropbtn ">Home
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a th:href="@{/diet}"
+                                target="_blank" > Diet</a>
+                            <a th:href="@{/yoga}" target="_blank">
+                                Yoga</a>
+                            <a th:href="@{/meditation}"
+                                target="_blank">Meditation</a>
+                        </div>
+                    </div> -->
+                    <a th:href="@{/home}" class="divcolor"
+                        style="color: brown; font-size: 25px;">Home</a>
+
+                    <a th:href="@{/about}" class="divcolor"
+                        style="color: brown; font-size: 25px;">Contact</a>
+
+                    <a th:href="@{/about}" class="divcolor"
+                        style="color: brown; font-size: 25px;">About</a>
+                    <a href="javascript:void(0);" class="icon"
+                        onclick="myFunction()">&#9776;</a>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-outline-success btn-sm me-md-2 ">
+                            <a th:href="@{/join}"
+                                class="list-group-item list-group-item-action active"
+                                target="_blank">
+                                SIGNUP
+                            </a>
+                        </button>
+                        <button
+                            onclick="document.getElementById('id01').style.display='block'"
+                            class="btn btn-outline-danger"
+                            style="width:auto;">Login</button>
+
+                        <div id="id01" class="modal">
+
+                            <!-- th:action="@{login-dt}" -->
+
+                            <form class="modal-content animate"
+                                th:action="@{/login}" action="#"
+                                method="post"
+                                name="myform"
+                                onsubmit="return validateform()">
+                                <div class="imgcontainer">
+                                    <span
+                                        onclick="document.getElementById('id01').style.display='none'"
+                                        class="close"
+                                        title="Close Modal">&times;</span>
+                                    <img src="../static/images/img2_avatar.jfif"
+                                        th:src="@{images/img2_avatar.jfif}"
+                                        alt="Avatar" class="avatar" id="avt">
+                                </div>
+
+                                <div class="container vlid">
+                                    <label for="Emailid"><b>Username/Email</b><span
+                                            class="req">*</span></label>
+                                    <input type="text"
+                                        placeholder="Enter Username"
+                                        name="Emailid" id="Emailid" required>
+                                    <!-- th:field="*{Emailid}" -->
+
+                                    <label for="psw"><b>Password</b><span
+                                            class="req">*</span></label>
+                                    <input type="password"
+                                        placeholder="Enter Password"
+                                        name="psw" id="psw"
+                                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                        required>
+                                    <span>
+                                        <input type="checkbox"
+                                            onclick="verify()">Show
+                                        password
+                                    </span>
+                                    <br>
+                                    <label>
+                                        <input type="checkbox" checked="checked"
+                                            name="remember"> Remember me
+                                    </label>
+                                    <br>
+                                    <input class="btn btn-success" type="submit"
+                                        value="Login">
+
+                                </div>
+
+                                <div class="container">
+                                    <button type="button"
+                                        style="max-width: 100px; height: auto;"
+                                        onclick="document.getElementById('id01').style.display='none'"
+                                        class="cancelbtn">Cancel</button>
+                                    <a class="btn btn-warning" role="button"
+                                        th:href="@{/join}"
+                                       
+                                        style="max-width:110px;"
+                                        value="signUp">Sign up</a>
+                                    <span class="psw"> <a href="#">Forgotpassword</a></span>
+                                </div>
+                                <div id="pswvalid" class="container">
+                                    <h5>Password must contain the following:</h5>
+                                    <p id="letter" class="invalid">&#x2713; A <b>lowercase</b>
+                                        letter</p>
+                                    <p id="capital" class="invalid">&#x2713; A
+                                        <b>capital
+                                            (uppercase)</b> letter</p>
+                                    <p id="number" class="invalid">&#x2713; A <b>number</b></p>
+                                    <p id="length" class="invalid">&#x2713;
+                                        Minimum
+                                        <b>8
+                                            characters</b></p>
+
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <div class="bckimg container text-center"
+            style="align-content: center; display:grid;">
+
+            <h1 class="text-warning" style="font-size: 60px;">YOGA</h1>
+            <h5 class="text-info" style="font-size: 30px;">Yoga can help soothe
+                the mind and lower stress levels. It does
+                this by focusing the mind on the moment and
+                the movements. Increase your concentration. A main part of yoga
+                is rhythmic, focused breathing.</h5>
+        </div><br>
+        <div class="container ">
+            <h1 style="color: aqua;">What is yoga and how does it work? </h1>
+            <p>Yoga is an ancient and complex practice, rooted in Indian
+                philosophy. It began as a spiritual practice but
+                has become popular as a way of promoting physical and mental
+                well-being.</p>
+
+            <p> Although classical yoga also includes other elements, yoga as
+                practiced in the United States typically
+                emphasizes physical postures (asanas), breathing techniques
+                (pranayama), and meditation (dyana).</p>
+
+            <p> There are many different yoga styles, ranging from gentle
+                practices to physically demanding ones.
+                Differences in the types of yoga used in research studies may
+                affect study results. This makes it
+                challenging to evaluate research on the health effects of yoga.</p>
+
+            <h2 style="color: brown;">Benefits of yoga</h2>
+            <ul>
+                <li>Help improve general wellness by relieving stress,
+                    supporting good health habits, and improving
+                    mental/emotional health, sleep, and balance.</li>
+                <li>Relieve low-back pain and neck pain, and possibly pain from
+                    tension-type headaches and knee
+                    osteoarthritis.</li>
+                <li>Help people who are overweight or obese lose weight.</li>
+                <li>Help people manage anxiety or depressive symptoms associated
+                    with difficult life situations.</li>
+                <li>Help people with chronic diseases manage their symptoms and
+                    improve their quality of life.</li>
+
+            </ul>
+
+            <h2 style="color: chocolate;">What are the risks of yoga?</h2>
+            <p>Yoga is generally considered a safe form of physical activity for
+                healthy people when performed properly,
+                under the guidance of a qualified instructor. However, as with
+                other forms of physical activity, injuries
+                can occur. The most common injuries are sprains and strains, and
+                the parts of the body most commonly injured
+                are the knee or lower leg. Serious injuries are rare. The risk
+                of injury associated with yoga is lower than
+                that for higher impact physical activities.</p>
+        </div>
+
+        <div class="container">
+            <h2 style="color: darkmagenta;">Types of Yoga</h2>
+
+            <p>There are four fundamental types of Yoga - Karma Yoga, Gnana
+                Yoga, Bhakti Yoga, and Kriya Yoga. This is
+                because a human being is a combination of these four aspects -
+                Body, Mind, Emotion, and Energy. Whatever
+                kind of spiritual path one walks falls into one or more of these
+                four categories.</p>
+            <ul>
+                <li><b>Gnana Yoga:</b>Gnana Yoga is the path of intelligence.
+                    Sadhguru describes it as a process of
+                    sharpening
+                    one's intelligence to a point where it penetrates through
+                    the process of life and shows you what is true
+                    and what is not true.</li><br>
+                <li><b>Karma Yoga:</b>
+                    Karma Yoga is the path of selfless action. It is the path of
+                    service, where one uses physical action to
+                    evolve spiritually.</li><br>
+                <li> <b>Bhakti Yoga</b>
+                    Bhakti Yoga is the path of devotion, where one uses their
+                    emotions to try to reach the ultimate.
+                    Sadhguru describes this path as the fastest and sweetest way
+                    to grow.</li><br>
+                <li><b>Kriya Yoga</b>
+                    Kriya Yoga is the path of using one's inner energies to
+                    reach the ultimate. Following the path of pure
+                    Kriya Yoga is a very demanding but powerful way to walk the
+                    spiritual path.</li>
+
+            </ul>
+        </div>
+        <div class="container">
+            <h2 style="color: antiquewhite;">Types of Poses</h2>
+            <p>Yoga has various pose types based on how you move your body to
+                complete them. Here are the basic types of
+                yoga poses.</p>
+            <ul>
+                <li><b>Standing poses:</b> Standing poses are often done first
+                    in a yoga class to "build heat" and warm you
+                    up.</li><br>
+                <li><b>Balancing poses:</b> Beginners' balances are an important
+                    way to build the core strength necessary
+                    for many
+                    of yoga's more advanced postures. Though balances may seem
+                    difficult at first, you will find that you
+                    can improve markedly with regular practice.</li><br>
+                <li><b>Backbends:</b> As a beginner, you will generally begin
+                    with gentle spine flexion and extension,
+                    eventually
+                    moving to deeper bends. Since you rarely move like this in
+                    daily life, backbends are essential for
+                    spinal health and longevity.</li><br>
+                <li><b>Seated poses:</b> Seated stretches, which often focus on
+                    stretching the hips and hamstrings, are
+                    usually
+                    done toward the end of a yoga class after the body is warm.
+                    Placing a folded blanket or a block under
+                    your seat is an excellent way to make yourself more
+                    comfortable in these postures.
+                </li><br>
+                <li><b>Resting or supine poses:</b> It's essential to get to
+                    know your resting poses, especially child's
+                    pose,
+                    which you are encouraged to do whenever you need a break
+                    during a yoga session. These resting poses
+                    continue the hip and hamstring work of the seated poses and
+                    provide gentle back-bending, twisting, and
+                    inversion.</li><br>
+            </ul>
+        </div>
+        <div class="container">
+            <img
+                style="display: block;margin-left: auto; margin-right: auto;width: 50%;"
+                src="../static/images/types-of-yoga-asanas.jpg" th:src="@{/images/types-of-yoga-asanas.jpg}">
+            <h2 style="color: greenyellow;">TYPE OF ASANAS </h2>
+            <p>The asanas are poses mainly for health and strength. There are
+                innumerable asanas, but not all of them are
+                really necessary, I shall deal with only such asanas as are
+                useful in curing ailments and maintaining good
+                health. </p>
+            <li><b>ARDHA CHAKRSANA (HALF WHEEL POSTURE):</b>
+                This posture resembles half wheel in final position, so it's
+                called Ardha Chakrasana or half wheel posture.
+            </li><br>
+            <li><b>TADASANA (PALM TREE POSE):</b>
+                In Sanskrit 'Tada' means palm tree. In the final position of
+                this posture, the body is steady like a Palm
+                tree, so this posture called as 'Tadasana'.</li><br>
+            <li><b>TRIKONASANA(TRIANGLE POSTURE):</b>
+                The final position of this posture looks like a 'triangle' in
+                shape, so it's called Trikonasa or triangular
+                stretch pose.</li><br>
+            <li><b>VEERABHADRASANA -2:</b>
+
+                'Veera Bhadra' is one of the Gana (can call as Soldier) of Lord
+                Shiva. This pose dedicated to him, so this
+                posture is called as Veerabhadrasana. This posture also called
+                as Warrior pose.</li><br>
+            <li><b>PARSHWA KONASANA (SIDE ANGLE POSTURE):</b>
+                In Sanskrit 'Parshwa' means Side, 'Kona' means angle. In the
+                final position of this posture, the body forms
+                a side angle, so this posture called as Parshwa Konasana.</li><br>
+            <li><b>BHUJANGAASANA:</b>
+                The final position of this posture emulates the action of cobra
+                raising itself just prior to striking at its
+                prey, so it's called cobra posture or Bhujangasan.</li><br>
+            <li><b>PADAHASTASANA:</b>
+                "Pada" means foot, "hasta" means hand. So the exact English
+                translation is the foot hand pose. This asana
+                widely called as the forward bending posture.</li><br>
+            <li><b>USTRASANA:</b>
+                The final position of this posture looks like Camel, so its
+                called camel posture or Ustrasana.</li><br>
+            <li><b>MARJARASANA:</b>
+                'Marjara' means Cat, this posture imitates the periodical upward
+                and down word stretching of the Cat, so
+                it's called Marajarasana.</li><br>
+            <li><b>PASCHIMOTTANASANA:</b>
+                Paschima means back or west, 'uttana' means to stretch, in this
+                posture back stretches nicely, so-called
+                back stretching pose. This posture also called as Ugrasana.</li><br>
+            <li><b>ARDHA MATSYENDRASANA (HALF-SPINAL TWIST POSE):</b>
+                Great yogi Matsyendra Nath did meditation in this posture. So
+                this posture called as Ardha Matsyendrasana.
+            </li><br>
+            <li><b>PADMASANA:</b>
+                'Padma' means lotus, the final position of this posture looks
+                like lotus, so it is called Padmasana.</li>
+            <br>
+            <li><b>ANANTA SHAYANASANA:</b>
+                'Ananta shayana' refers to Lord Vishnu. During 'maha pralaya'
+                Lord Vishnu slept above 'Adishesha'(1000
+                headed serpent) in this position. So this posture called as
+                Ananta Shayanasana.</li><br>
+            <li><b>PAVANA MUKTASANA:</b>
+                In Sanskrit 'Pawan' means wind, 'Mukta' means release. This
+                posture is very useful in removing wind from the
+                intestines and stomach. So this posture called as
+                "Pawan muktasana".</li><br>
+            <li><b>PURVAUTTANASAN:</b>
+                'Purva' refers to the front part of the body.'Uttana' means
+                raising. The front part of the body is rising in
+                the final position of this posture, so it's called
+                "Purvottanasana".</li><br>
+
+        </div>
+
+        <footer class=" foot1">
+            <div class="container-fluid " style="position: relative;">
+                <br>
+                <aside class="foot3">
+                    <h3>Find us on</h3><br>
+                    <ul class="nav flex-row">
+                        <i class="fa fa-facebook fa-lg"></i>
+                        <i class="fa fa-youtube  fa-lg"></i>
+                        <i class="fa fa-instagram  fa-lg"></i>
+                        <i class="fa fa-twitter  fa-lg"></i>
+                    </ul>
+                </aside>
+
+                <aside class=" foot2">
+                    <h3>Quick Links</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                                th:href="@{/diet}" target="_blank">Diet</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/yoga}" target="_blank">Yoga</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@{/meditation}"
+                                target="_blank">Meditation</a>
+                        </li>
+
+                    </ul>
+                </aside>
+            </aside>
+        </div>
+
+        <aside class=" foot4">
+            <h3 style="color: blueviolet;">About Us</h3>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"
+                        th:href="@{/about}">Programs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">Organizational
+                        structure</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">Our centers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">Contact Us</a>
+                </li>
+
+            </ul>
+            <br><br>
+
+        </footer>
+
+        <div class="container-fluid text-secondary ">
+
+            <a>&#169 All Copyrights Reserved</a>
+            <div style="float: right;">
+                <ul class="nav nav-pills nav-fill" style="float: right;">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="#">Privacy
+                            policy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cookie Policy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Terms of Use</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        
+
+<script>
+        //login Form validation
+function validateform(){  
+    var name=document.myform.uname.value;  
+    var password=document.myform.psw.value;  
+      
+    if (name==null || name==""){  
+      alert("Enter username");  
+      return false;  
+    }else if(password.length<8){  
+      alert("Password must be at least 8 characters long.");  
+      password.focus();
+      return false;  
+      }  
+    }  
+
+    //password validation
+    var myinput=document.getElementById("psw")
+    var letter=document.getElementById("letter")
+    var capital=document.getElementById("capital")
+    var number=document.getElementById("number")
+    var length=document.getElementById("length")
+
+    // When the user clicks on the password field, show the message box
+    myinput.onfocus=function(){
+      document.getElementById("pswvalid").style.display="block";
+    }
+    // When the user clicks outside of the password field, hide the message box
+    myinput.onblur=function(){
+      document.getElementById("pswvalid").style.display="none";
+    }
+
+    // When the user starts to type something inside the password field
+//validate capital letters
+myinput.onkeyup=function(){
+  var lowerCaseLetters= /[a-z]/g;
+
+if(myinput.value.match(lowerCaseLetters)){
+  letter.classList.remove('invalid');
+  letter.classList.add('valid');
+}else{
+  letter.classList.remove('valid');
+  letter.classList.add('invalid')
+}
+var upperCaseLetters= /[A-Z]/g;
+
+if(myinput.value.match(upperCaseLetters)){
+  capital.classList.remove('invalid');
+  capital.classList.add('valid');
+}else{
+  capital.classList.remove('valid');
+  capital.classList.add('invalid')
+}
+//validate number
+var numbers= /[0-9]/g;
+if(myinput.value.match(numbers)){
+  number.classList.remove('invalid')
+  number.classList.add('valid')
+}else{
+  number.classList.remove('valid')
+  number.classList.add('invalid')
+}
+// validate length
+if(myinput.value.length>=8){
+  length.classList.remove('invalid')
+  length.classList.add('valid')
+}else{
+  length.classList.remove('valid')
+  length.classList.add('invalid')
+}
+var numbers= /[0-9]/g;
+if(myinput.value.match(numbers)){
+  number.classList.remove('invalid')
+  number.classList.add('valid')
+}else{
+  number.classList.remove('valid')
+  number.classList.add('invalid')
+}
+}
+
+//Show Password
+var x=document.getElementById("psw")
+function verify(){
+    if(x.type==='password'){
+        x.type='text'
+    }
+    else{
+        x.type='password';
+    }
+}
+
+//After clicking login button
+// function validateform(){
+//   alert("Login successfully")
+// }
+
+
+
+
+
+    </script>
+
+    </script>
+    </body>
+
+</html>
